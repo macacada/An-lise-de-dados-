@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Carregar o arquivo CSV
+arquivo = 'dados.csv'  # Substitua pelo nome do seu arquivo
+dados = pd.read_csv(arquivo)
+
+# Mostrar as primeiras linhas do dataset
+print("Primeiras linhas do dataset:")
+print(dados.head())
+
+# Estatísticas descritivas
+print("\nEstatísticas descritivas:")
+print(dados.describe())
+
+# Verificar valores ausentes
+print("\nValores ausentes por coluna:")
+print(dados.isnull().sum())
+
+# Gráfico de barras para uma coluna categórica
+coluna_categorica = 'Categoria'  # Substitua pelo nome da coluna
+if coluna_categorica in dados.columns:
+    dados[coluna_categorica].value_counts().plot(kind='bar', title='Distribuição por Categoria')
+    plt.show()
+
+# Gráfico de linha para uma coluna numérica
+coluna_numerica = 'Valor'  # Substitua pelo nome da coluna
+if coluna_numerica in dados.columns:
+    dados[coluna_numerica].plot(kind='line', title='Valores ao longo do tempo')
+    plt.show()
